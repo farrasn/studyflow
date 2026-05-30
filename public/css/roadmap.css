@@ -1,0 +1,977 @@
+/* ============================================================
+   StudyFlow AI — Roadmap Page
+   roadmap.css
+   
+   Two-column layout with sticky sidebar, skill tree nodes,
+   connectors, category headings, and mobile adaptations.
+   ============================================================ */
+
+
+/* ==========================================================
+   PAGE LAYOUT
+   ========================================================== */
+.roadmap-page {
+  display: flex;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: calc(100vh - 64px);
+}
+
+
+/* ==========================================================
+   SIDEBAR
+   ========================================================== */
+.roadmap-sidebar {
+  width: 280px;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  padding: var(--space-6);
+  overflow-y: auto;
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  flex-shrink: 0;
+}
+
+.sidebar-section {
+  margin-bottom: var(--space-8);
+}
+
+.sidebar-title {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-tertiary);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-4);
+  padding: 0 var(--space-4);
+}
+
+.sidebar-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-secondary);
+}
+
+.sidebar-item:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.sidebar-item.active {
+  background: rgba(108, 138, 255, 0.1);
+  color: var(--accent-blue);
+  position: relative;
+}
+
+.sidebar-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 20px;
+  background: var(--accent-gradient);
+  border-radius: var(--radius-full);
+}
+
+.sidebar-item-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+
+.sidebar-item-name {
+  font-weight: var(--font-medium);
+  font-size: var(--text-base);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-item-count {
+  margin-left: auto;
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+  font-weight: var(--font-medium);
+  flex-shrink: 0;
+}
+
+/* Sidebar progress */
+.sidebar-progress {
+  padding: 0 var(--space-4);
+  margin-top: var(--space-4);
+}
+
+
+/* ==========================================================
+   MAIN CONTENT
+   ========================================================== */
+.roadmap-main {
+  flex: 1;
+  padding: var(--space-12) var(--space-16);
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.roadmap-content {
+  width: 100%;
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* ==========================================================
+   ROADMAP HEADER
+   ========================================================== */
+.roadmap-header {
+  margin-bottom: var(--space-12);
+}
+
+.roadmap-header-info {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.roadmap-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.roadmap-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.roadmap-description {
+  color: var(--text-secondary);
+  margin-top: var(--space-2);
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.roadmap-header-actions {
+  margin-top: var(--space-6);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.roadmap-filters {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-4);
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.filter-btn.active {
+  background: var(--accent-blue);
+  color: white;
+}
+
+.roadmap-progress {
+  margin-top: var(--space-6);
+  max-width: 480px;
+}
+
+
+/* ==========================================================
+   ROADMAP TREE
+   ========================================================== */
+.roadmap-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: var(--space-8) 0;
+}
+
+
+/* ==========================================================
+   CATEGORY
+   ========================================================== */
+.roadmap-category {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: var(--space-12);
+}
+
+.category-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-tertiary);
+  font-weight: var(--font-semibold);
+  text-align: center;
+  margin-bottom: var(--space-6);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.category-label::before,
+.category-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ==========================================================
+   NODES
+   ========================================================== */
+.category-nodes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roadmap-node {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.roadmap-node:hover {
+  transform: translateX(4px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Completed state */
+.roadmap-node.completed {
+  border-color: rgba(108, 138, 255, 0.3);
+  background: rgba(108, 138, 255, 0.04);
+}
+
+.roadmap-node.completed .node-status {
+  background: var(--accent-gradient);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+/* Locked state */
+.roadmap-node.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.roadmap-node.locked:hover {
+  transform: none;
+  border-color: var(--glass-border);
+  box-shadow: none;
+}
+
+/* Available state (default) */
+.roadmap-node.available {
+  /* Uses default styles */
+}
+
+.roadmap-node.available:hover {
+  border-color: var(--accent-blue);
+}
+
+/* Node status indicator */
+.node-status {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+  color: var(--text-tertiary);
+}
+
+/* Node content */
+.node-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.node-title {
+  font-weight: var(--font-semibold);
+  font-size: var(--text-md);
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.node-meta {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.node-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.node-meta-item svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0.7;
+}
+
+/* Node arrow */
+.node-arrow {
+  color: var(--text-tertiary);
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.roadmap-node:hover .node-arrow {
+  transform: translateX(2px);
+  color: var(--text-secondary);
+}
+
+.node-arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* ==========================================================
+   CONNECTORS
+   ========================================================== */
+.roadmap-connector {
+  width: 2px;
+  height: 32px;
+  background: var(--border);
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+.roadmap-connector.completed {
+  background: var(--accent-gradient);
+}
+
+
+/* ==========================================================
+   MOBILE SIDEBAR SELECT
+   ========================================================== */
+.roadmap-mobile-select {
+  display: none;
+  margin-bottom: var(--space-6);
+}
+
+.roadmap-mobile-select select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b8d98' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.roadmap-mobile-select select:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}
+
+
+/* ==========================================================
+   EMPTY / PLACEHOLDER STATE
+   ========================================================== */
+.roadmap-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-6);
+  text-align: center;
+}
+
+.roadmap-empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-4);
+  opacity: 0.5;
+}
+
+.roadmap-empty-title {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+}
+
+.roadmap-empty-description {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin-top: var(--space-2);
+  max-width: 400px;
+}
+
+
+/* ==========================================================
+   DYNAMIC SIDEBAR ELEMENTS (rendered by roadmap.js)
+   ========================================================== */
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-list .sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-secondary);
+  list-style: none;
+}
+
+.sidebar-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  width: 28px;
+  text-align: center;
+}
+
+.sidebar-item-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar-item-title {
+  font-weight: var(--font-medium);
+  font-size: var(--text-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-progress-mini {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sidebar-progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.sidebar-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.sidebar-progress-text {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  font-weight: var(--font-medium);
+  flex-shrink: 0;
+  min-width: 30px;
+  text-align: right;
+}
+
+
+/* ==========================================================
+   ROADMAP CONTENT (dynamic wrapper)
+   ========================================================== */
+.roadmap-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+
+/* ==========================================================
+   DYNAMIC HEADER ELEMENTS
+   ========================================================== */
+.roadmap-header-info {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.roadmap-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.progress-label {
+  color: var(--text-secondary);
+}
+
+.progress-pct {
+  font-weight: var(--font-semibold);
+  color: var(--accent-blue);
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ==========================================================
+   DYNAMIC CATEGORY ELEMENTS
+   ========================================================== */
+.category-label {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-tertiary);
+  font-weight: var(--font-semibold);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  padding-top: var(--space-4);
+}
+
+.category-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.category-nodes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* ==========================================================
+   DYNAMIC NODE CONNECTORS
+   ========================================================== */
+.node-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+}
+
+.connector-line {
+  width: 0;
+  height: 100%;
+  border-left: 2px dashed var(--border);
+  transition: border-color 0.3s ease;
+}
+
+
+/* ==========================================================
+   NODE ANIMATION
+   ========================================================== */
+.roadmap-node {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.roadmap-node.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.roadmap-node.locked.visible {
+  opacity: 0.5;
+}
+
+.roadmap-node.visible:hover {
+  transform: translateX(4px);
+}
+
+.roadmap-node.locked.visible:hover {
+  transform: none;
+}
+
+.check-icon {
+  font-weight: bold;
+}
+
+
+/* ==========================================================
+   DYNAMIC MODAL (generated by roadmap.js)
+   ========================================================== */
+.modal-container {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  max-width: 560px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: var(--space-8);
+  position: relative;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0) scale(1);
+}
+
+.modal-overlay.closing {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.closing .modal-container {
+  transform: translateY(20px) scale(0.95);
+}
+
+.modal-container .modal-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  transition: all var(--transition-fast);
+}
+
+.modal-container .modal-close:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.modal-container .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-5);
+  padding-right: var(--space-8);
+}
+
+.modal-container .modal-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+}
+
+.modal-time {
+  font-size: var(--text-sm);
+  color: var(--accent-blue);
+  font-weight: var(--font-medium);
+  margin-top: var(--space-1);
+}
+
+.modal-container .modal-body {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.modal-container .modal-description {
+  font-size: var(--text-base);
+  margin-bottom: var(--space-5);
+  line-height: 1.7;
+}
+
+/* Modal resources */
+.modal-container .modal-resources {
+  margin-bottom: var(--space-5);
+}
+
+.modal-container .modal-resources h4 {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+}
+
+.modal-container .modal-resources ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.modal-container .modal-resources li a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--accent-blue);
+  font-weight: var(--font-medium);
+  font-size: var(--text-base);
+  transition: background var(--transition-fast);
+}
+
+.modal-container .modal-resources li a:hover {
+  background: rgba(108, 138, 255, 0.08);
+}
+
+.external-icon {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* Modal project */
+.modal-container .modal-project {
+  padding: var(--space-4);
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+}
+
+.modal-container .modal-project h4 {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.modal-container .modal-project p {
+  font-size: var(--text-base);
+  line-height: 1.6;
+}
+
+/* Modal dependencies */
+.modal-container .modal-dependencies {
+  margin-bottom: var(--space-5);
+}
+
+.modal-container .modal-dependencies h4 {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.modal-container .modal-dependencies ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.modal-container .modal-dependencies li {
+  font-size: var(--text-base);
+  padding: var(--space-1) 0;
+}
+
+/* Modal footer / action buttons */
+.modal-container .modal-footer {
+  margin-top: var(--space-6);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+  font-weight: var(--font-semibold);
+  font-size: var(--text-base);
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.btn-complete {
+  background: var(--accent-gradient);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(108, 138, 255, 0.25);
+}
+
+.btn-complete:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 138, 255, 0.35);
+}
+
+.btn-completed {
+  background: rgba(52, 211, 153, 0.12);
+  color: var(--color-success);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.btn-completed:hover {
+  background: rgba(52, 211, 153, 0.18);
+}
+
+.btn-locked {
+  background: var(--bg-tertiary);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.btn-locked:hover {
+  transform: none;
+}
+
+
+/* ==========================================================
+   CLEAR PROGRESS BUTTON
+   ========================================================== */
+.roadmap-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--border);
+}
+
+.btn-clear-progress {
+  padding: 8px 20px;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-sans);
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-tertiary);
+  transition: all var(--transition-fast);
+}
+
+.btn-clear-progress:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+  background: rgba(248, 113, 113, 0.06);
+}
+
+
+/* ==========================================================
+   MOBILE CAREER SELECTOR (dynamic)
+   ========================================================== */
+.mobile-career-selector {
+  display: none;
+  padding: var(--space-4) var(--space-4) 0;
+}
+
+.career-dropdown {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b8d98' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.career-dropdown:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+}

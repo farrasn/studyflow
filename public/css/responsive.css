@@ -1,0 +1,386 @@
+/* ============================================================
+   StudyFlow AI — Responsive Breakpoints
+   responsive.css
+   
+   Tablet (≤1024) · Mobile (≤768) · Small Mobile (≤480)
+   ============================================================ */
+
+
+/* ==========================================================
+   TABLET  —  max-width: 1024px
+   ========================================================== */
+@media (max-width: 1024px) {
+
+  /* Roadmap sidebar */
+  .roadmap-sidebar {
+    width: 240px;
+  }
+
+  /* Hero */
+  .hero-stats {
+    gap: var(--space-8);
+  }
+
+  /* Sections */
+  .section {
+    padding: 72px 0;
+  }
+
+  /* Roadmap main */
+  .roadmap-main {
+    padding: var(--space-10);
+  }
+
+  /* Footer */
+  .footer-links {
+    gap: var(--space-10);
+  }
+
+  /* Career grid */
+  .careers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+
+/* ==========================================================
+   MOBILE  —  max-width: 768px
+   ========================================================== */
+@media (max-width: 768px) {
+
+  /* ----- Navbar ----- */
+  .navbar-links {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .mobile-nav.active {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ----- Hero ----- */
+  .hero {
+    min-height: auto;
+    padding: 80px 0 60px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 2.75rem);
+  }
+
+  .hero-description {
+    font-size: var(--text-md);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .hero-stat {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .hero-stat-label {
+    margin-top: 0;
+  }
+
+  /* Hide decorative glows on mobile for perf */
+  .hero-glow {
+    display: none;
+  }
+
+  /* ----- Features ----- */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ----- Careers ----- */
+  .careers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ----- Roadmap ----- */
+  .roadmap-sidebar {
+    display: none;
+  }
+
+  .roadmap-mobile-select,
+  .mobile-career-selector {
+    display: block;
+  }
+
+  .roadmap-page {
+    flex-direction: column;
+  }
+
+  .roadmap-main {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .roadmap-node {
+    padding: var(--space-4);
+  }
+
+  .roadmap-title {
+    font-size: var(--text-xl);
+  }
+
+  .roadmap-category {
+    margin-bottom: var(--space-8);
+  }
+
+  /* ----- Modal ----- */
+  .modal,
+  .modal-container {
+    width: 95%;
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    max-height: 90vh;
+  }
+
+  .modal-header {
+    margin-bottom: var(--space-4);
+  }
+
+  .modal-title {
+    font-size: var(--text-lg);
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+
+  .modal-footer .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ----- Sections ----- */
+  .section-title {
+    font-size: var(--text-3xl);
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-10);
+  }
+
+  /* ----- Footer ----- */
+  .footer-content {
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .footer-brand {
+    max-width: 100%;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: var(--space-3);
+    text-align: center;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
+  }
+
+  /* ----- Cards ----- */
+  .card {
+    padding: var(--space-6);
+  }
+
+  /* ----- Progress ----- */
+  .roadmap-progress {
+    max-width: 100%;
+  }
+}
+
+
+/* ==========================================================
+   SMALL MOBILE  —  max-width: 480px
+   ========================================================== */
+@media (max-width: 480px) {
+
+  /* Container */
+  .container {
+    padding: 0 var(--space-4);
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 0 var(--space-4);
+  }
+
+  .navbar-logo {
+    font-size: var(--text-lg);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 60px 0 40px;
+  }
+
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .hero-description {
+    font-size: var(--text-base);
+  }
+
+  .hero-badge {
+    font-size: var(--text-xs);
+    padding: 4px 12px;
+  }
+
+  .hero-buttons {
+    margin-top: var(--space-8);
+  }
+
+  .hero-stats {
+    margin-top: var(--space-10);
+    padding-top: var(--space-6);
+  }
+
+  .hero-stat-value {
+    font-size: var(--text-xl);
+  }
+
+  /* Cards */
+  .card {
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+  }
+
+  .career-card {
+    padding: var(--space-6);
+  }
+
+  .career-card-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+    border-radius: var(--radius-lg);
+  }
+
+  .career-card-meta {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  /* Roadmap nodes */
+  .roadmap-node {
+    padding: 14px 16px;
+    border-radius: var(--radius-lg);
+    gap: var(--space-3);
+  }
+
+  .node-status {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .node-title {
+    font-size: var(--text-base);
+  }
+
+  .roadmap-connector {
+    height: 24px;
+  }
+
+  /* Section title */
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-description {
+    font-size: var(--text-base);
+  }
+
+  /* Modal */
+  .modal {
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 10px 20px;
+    font-size: var(--text-sm);
+  }
+
+  .btn-lg {
+    padding: 14px 24px;
+    font-size: var(--text-base);
+  }
+
+  /* Badges */
+  .badge {
+    padding: 3px 10px;
+    font-size: 0.6875rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--space-8) 0;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+}
+
+
+/* ==========================================================
+   PRINT STYLES
+   ========================================================== */
+@media print {
+  .navbar,
+  .footer,
+  .theme-toggle,
+  .mobile-menu-btn,
+  .mobile-nav,
+  .hero-glow,
+  .modal-overlay {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .card,
+  .roadmap-node {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}
